@@ -1,0 +1,8 @@
+.cabinet a{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.cabinet_title{
+    color: #1F1E25;
+}

@@ -1,0 +1,38 @@
+.footer{
+    height:91px;
+    display:flex;
+    align-items: start;
+    padding: 60px 100px;
+    justify-content: space-between;
+    color: #707C87;
+    font: 400 12px 'Roboto', sans-serif;
+}
+.footer_logo{
+    display:flex;
+    flex-direction: column;
+    max-width:360px;
+    display:flex;
+    gap: 12px;
+
+}
+.footer_logo div {
+    display:flex;
+    flex-direction: row;
+}
+.footer_logo_text {
+    color: #1F1E25;
+    font-family: 'Work Sans', sans-serif;
+    font-size:20px;
+}
+.footer_logo_description {
+    max-width: 182px;
+}
+.footer_contacts{
+    display:flex;
+    justify-content: space-between;
+    width: 40%;
+}
+.socials{
+    display: flex;
+    gap:20px;
+}
