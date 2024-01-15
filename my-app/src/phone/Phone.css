@@ -1,0 +1,12 @@
+.contact {
+  display: flex;
+  flex-direction: column;
+}
+.contact_call {
+  display: flex;
+  gap: 10px;
+}
+.contact_call-number {
+  font: 500 16px "Roboto", sans-serif;
+  color: #1f1e25;
+}

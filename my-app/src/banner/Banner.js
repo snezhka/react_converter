@@ -1,21 +1,32 @@
-import rectangle from './rectangle.png';
-import card from './card.png';
+import { Converter } from '../converter/Converter';
+import card from '../img/card.png';
 import './Banner.css';
-export function Banner({ header, text, button_name }) {
-    return (
-        <div className="container" style={{
-            backgroundImage: `url(${rectangle})`,
-        }}>
-            <div className="banner">
-                <div className="banner_converter">
-                    <span className="banner_converter_header">{header}</span>
-                    <span className="banner_converter_text">{text}</span>
-                    <div className="banner_converter_button">
-                        <a href="#">{button_name}</a>
+import { useState } from 'react';
+import { banner } from '../constants.js';
+
+export function Banner({ show }) {
+    const [showConverter, setShowConverter] = useState(false);
+    const [showBanner, setShowBanner] = useState(show);
+    function toggleConverter() {
+        setShowConverter(!showConverter);
+        setShowBanner(!showBanner);
+    }
+    if (showBanner) {
+        return (
+            <div className='container'>
+                <div className='banner'>
+                    <div className='banner_converter'>
+                        <p className='banner_converter-title'>{banner.title}</p>
+                        <p className='banner_converter-text'>{banner.bannerText}</p>
+                        <a href='#' className='banner_converter-button' onClick={toggleConverter}>{banner.buttonName}</a>
                     </div>
+                    <img src={card} alt='card' style={{ width: '341px', height: '216px' }}></img>
                 </div>
-                <img src={card} alt="card"></img>
             </div>
-        </div>
-    )
+        )
+    } else {
+        return (
+            <Converter show={showConverter} />
+        )
+    }
 }

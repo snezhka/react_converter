@@ -1,8 +1,9 @@
 import './Menu.css';
-export function Menu({ menu_items, isHeader }) {
+
+export function Menu({ menuItems, isHeader }) {
     return (
-        <ul className={isHeader ? "menu_header" : "menu_footer"}>
-            {menu_items.map((item) => <li className="menu_item"><a href="#">{item}</a></li>)}
+        <ul className={isHeader ? 'menu_header' : 'menu_footer'}>
+            {menuItems.map((item) => <li key={item.id} className="menu_item"><a href='#'>{item.title}</a></li>)}
         </ul>
     );
 }

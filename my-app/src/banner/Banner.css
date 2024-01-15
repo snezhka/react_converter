@@ -1,37 +1,39 @@
-.container{
-    height:400px;
-    background-size: cover;
-    display:flex;
-    align-items: center;
-    justify-content: center;
+.container {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../img/rectangle.png");
+  background-size: cover;
 }
-.banner{
-    display:flex;
-    gap:200px;
+.banner {
+  display: flex;
+  gap: 200px;
 }
-.banner_converter{
-    display:flex;
-    flex-direction: column;
-    gap:30px;
+.banner_converter {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
 }
-.banner_converter_header{
-    font-size:54px;
-    color:#F6F7FF;
+.banner_converter-title {
+  font-size: 54px;
+  color: #f6f7ff;
+  margin: 0;
 }
-.banner_converter_text{
-    font: 500 20px "Roboto", sans-serif;
-    color:#F6F7FF;
+.banner_converter-text {
+  font: 500 20px "Roboto", sans-serif;
+  color: #f6f7ff;
+  margin: 0;
 }
-.banner_converter_button {
-    width: 234px;
-    height: 53px;
-    background-color: #F6F7FF;
-    border-radius: 4px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-.banner_converter_button a {
-    color: #707C87;
-    font-size:18px;
+.banner_converter-button {
+  width: 234px;
+  height: 53px;
+  background-color: #f6f7ff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #707c87;
+  font-size: 18px;
 }

@@ -1,16 +1,20 @@
 import './Header.css';
 import { Menu } from './menu/Menu.js';
 import { Cabinet } from './cabinet/Cabinet.js';
-import logo from './logo.png';
-export function Header({ title, menu_items }) {
+import logo from '../img/logo.png';
+import { cabinet } from '../constants.js';
+import { header } from '../constants.js';
+
+export function Header() {
+    console.log(header);
     return (
-        <div className="header">
-            <div className="header_logo">
-                <img src={logo} width="23" height="23" alt="logo"></img>
-                <a href="#" className="header_logo_text">{title}</a>
+        <div className='header'>
+            <div className='header_logo'>
+                <img src={logo} style={{ width: '23px', height: '23px' }} alt='logo'></img>
+                <a href='#' className='header_logo-text'>{header.title}</a>
             </div>
-            <Menu menu_items={menu_items} isHeader={true} />
-            <Cabinet title={"Особистий кабінет"} />
+            <Menu menuItems={header.menuItems} isHeader={true} />
+            <Cabinet title={cabinet} />
         </div>
     );
 }

@@ -1,22 +1,19 @@
-.menu_header{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 70px;
-    position:relative;
-    left:-100px;
-    margin:0;
-    padding:0;
-
+.menu_header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 70px;
+  margin: 0;
+  padding: 0;
 }
-.menu_footer{
-    display: flex;
-    flex-direction: column;
-    gap:15px;
-    font: 500 16px 'Roboto', sans-serif;
-    margin:0;
-    padding:0;
+.menu_footer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font: 500 16px "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
 }
-.menu_item{
-	list-style-type: none;
-	color: #707C87;
+.menu_item {
+  list-style-type: none;
+  color: #707c87;
 }

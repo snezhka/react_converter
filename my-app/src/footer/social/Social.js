@@ -1,6 +1,5 @@
-// import './Social.css';
 export function Social({ social }) {
     return (
-        <a href="#"><img className="social" src={social.src} alt="social"></img></a>
+        <a href='#'><img className='social' src={social.src} alt='social'></img></a>
     );
 }
