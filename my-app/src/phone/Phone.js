@@ -1,4 +1,4 @@
-import './Phone.css';
+import './Phone.scss';
 
 export function Phone({ phone }) {
     return (

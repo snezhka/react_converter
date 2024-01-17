@@ -1,4 +1,4 @@
-import './Header.css';
+import './Header.scss';
 import { Menu } from './menu/Menu.js';
 import { Cabinet } from './cabinet/Cabinet.js';
 import logo from '../img/logo.png';
@@ -6,7 +6,6 @@ import { cabinet } from '../constants.js';
 import { header } from '../constants.js';
 
 export function Header() {
-    console.log(header);
     return (
         <div className='header'>
             <div className='header_logo'>

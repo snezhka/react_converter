@@ -1,4 +1,4 @@
-import './Cabinet.css';
+import './Cabinet.scss';
 import cabinet from '../../img/cabinet.png';
 
 export function Cabinet({ title }) {

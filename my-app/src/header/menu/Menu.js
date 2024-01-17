@@ -1,4 +1,4 @@
-import './Menu.css';
+import './Menu.scss';
 
 export function Menu({ menuItems, isHeader }) {
     return (

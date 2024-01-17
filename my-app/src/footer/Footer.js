@@ -1,4 +1,4 @@
-import './Footer.css';
+import './Footer.scss';
 import logo from '../img/logo.png';
 import { Menu } from '../header/menu/Menu.js';
 import { Phone } from '../phone/Phone.js';

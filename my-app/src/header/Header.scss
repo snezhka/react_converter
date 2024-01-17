@@ -1,0 +1,18 @@
+// @use "App";
+
+.header {
+  min-height: 91px;
+  display: flex;
+  padding: 34px 100px;
+  justify-content: space-between;
+  align-items: center;
+}
+.header_logo {
+  width: 147px;
+  display: flex;
+  gap: 12px;
+}
+.header_logo-text {
+  color: #1f1e25;
+  font: 20px "Work Sans", sans-serif;
+}
