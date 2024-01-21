@@ -1,32 +1,30 @@
-.container {
+.banner-container {
   min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: url("../img/rectangle.png");
   background-size: cover;
-}
-.banner {
   display: flex;
   gap: 200px;
 }
-.banner_converter {
+.banner {
   display: flex;
   flex-direction: column;
   gap: 30px;
   justify-content: center;
 }
-.banner_converter-title {
+.banner_title {
   font-size: 54px;
   color: #f6f7ff;
   margin: 0;
 }
-.banner_converter-text {
+.banner_text {
   font: 500 20px "Roboto", sans-serif;
   color: #f6f7ff;
   margin: 0;
 }
-.banner_converter-button {
+.banner_button {
   width: 234px;
   height: 53px;
   background-color: #f6f7ff;

@@ -7,8 +7,14 @@ import soc4 from './img/4.png';
 
 const title = 'Чіп Чендж';
 const bannerText = 'Обмінник валют - навчальний';
-const buttonName = 'Конвертер валют';
+const converterTitle = 'Конвертер валют';
 const menuItems = [{ id: 0, title: 'Послуги' }, { id: 1, title: 'Конвертер валют' }, { id: 2, title: 'Контакти' }, { id: 3, title: 'Задати питання' }];
+
+const converterText1 = 'В мене є:';
+const converterText2 = 'Хочу придбати:';
+const converterButtonName = 'Конвертувати валюту';
+const saveResult = 'Зберегти результат';
+const converterText = 'Переважна діяльність банківської групи за останні чотири звітні квартали становить 50 і більше відсотків.';
 
 export const cabinet = 'Особистий кабінет';
 export const footerDescription = '04128, м.Київ, вул. Хрещатик, 19\n Ліцензія НБУ №156\n Ⓒ ПАТ ЧіпЧендж, 2019-2023';
@@ -17,5 +23,7 @@ export const phones = [{ number: '3773', title: 'Цілодобова підтр
 export const socials = [{ id: 0, src: soc1 }, { id: 1, src: soc2 }, { id: 2, src: soc3 }, { id: 3, src: soc4 }];
 
 export const header = { title, menuItems };
-export const banner = { title, bannerText, buttonName };
+export const banner = { title, bannerText, converterTitle };
 export const footer = { title, footerDescription, menuItems };
+export const converter = { converterTitle, converterText, converterButtonName };
+export const calculation = { converterTitle, converterText1, converterText2, saveResult }
