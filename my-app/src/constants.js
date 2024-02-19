@@ -8,12 +8,14 @@ import soc4 from './img/4.png';
 const title = 'Чіп Чендж';
 const bannerText = 'Обмінник валют - навчальний';
 const converterTitle = 'Конвертер валют';
+const historyTitle = 'Історія конвертацій';
 const menuItems = [{ id: 0, title: 'Послуги' }, { id: 1, title: 'Конвертер валют' }, { id: 2, title: 'Контакти' }, { id: 3, title: 'Задати питання' }];
 
 const converterText1 = 'В мене є:';
 const converterText2 = 'Хочу придбати:';
 const converterButtonName = 'Конвертувати валюту';
 const saveResult = 'Зберегти результат';
+const clearHistory = 'Очистити історію';
 const converterText = 'Переважна діяльність банківської групи за останні чотири звітні квартали становить 50 і більше відсотків.';
 
 export const cabinet = 'Особистий кабінет';
@@ -27,3 +29,4 @@ export const banner = { title, bannerText, converterTitle };
 export const footer = { title, footerDescription, menuItems };
 export const converter = { converterTitle, converterText, converterButtonName };
 export const calculation = { converterTitle, converterText1, converterText2, saveResult }
+export const history = { historyTitle, clearHistory }

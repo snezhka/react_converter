@@ -1,6 +1,7 @@
-import { calculation } from '../constants.js';
+import { calculation, history } from '../constants.js';
 import './Calculator.scss';
 import arrows from '../img/arrows.svg';
+import { History } from '../history/History.js';
 import {
     useQuery,
 } from 'react-query'
@@ -14,6 +15,7 @@ const weekBefore = getUIDateFormat(weekBeforeDate);
 export function Calculator() {
     const [date, setDate] = useState(today);
     const [sell, setSell] = useState(true);
+    const [historyItems, setHistoryItems] = useState([]);
 
     const { data, isSuccess, isLoading, isError } = useQuery({
         queryKey: ['currencies', date],
@@ -35,52 +37,89 @@ export function Calculator() {
         }
     }, [date, isSuccess, sell]
     );
-
     return (
-        < div className='calculation-containter' >
-            <div className='calculation'>
-                <p className='calculation_title'>{calculation.converterTitle}</p>
-                <div className='calculation_exchange'>
-                    <div>
-                        <p className='calculation_text'>{calculation.converterText1}</p>
-                        <div className='calculation_exchange-pos calculation_exchange-pos--left'>
+        <div className='calculator'>
+            <div className='calculation-containter' >
+                <div className='calculation'>
+                    <p className='calculation_title'>{calculation.converterTitle}</p>
+                    <div className='calculation_exchange'>
+                        <div>
+                            <p className='calculation_text'>{calculation.converterText1}</p>
+                            <div className='calculation_exchange-pos calculation_exchange-pos--left'>
 
-                            <div className='calculation_exchange-pos-row'>
-                                <input type="text" inputmode="numeric" pattern="\d*" id='amount-sell' placeholder='0.00' onChange={() => { setSell(true); calculateBuy(data) }} />
-                                <select id='currency-sell' onChange={() => calculateBuy(data)}>
-                                    <option value="0" selected>UAH</option>
-                                    <option value="1">USD</option>
-                                    <option value="2">EUR</option>
-                                    <option value="3">GBP</option>
-                                    <option value="4">CNY</option>
-                                </select>
+                                <div className='calculation_exchange-pos-row'>
+                                    <input type="text" inputmode="numeric" pattern="\d*" id='amount-sell' placeholder='0.00' onChange={() => { setSell(true); calculateBuy(data) }} />
+                                    <select id='currency-sell' onChange={() => calculateBuy(data)}>
+                                        <option value="0" selected>UAH</option>
+                                        <option value="1">USD</option>
+                                        <option value="2">EUR</option>
+                                        <option value="3">GBP</option>
+                                        <option value="4">CNY</option>
+                                    </select>
+                                </div>
+                                <input type='date' id='calendar' value={date} min={weekBefore} max={today} onChange={(evt) => setDate(getCalendarDate(evt))} />
                             </div>
-                            <input type='date' id='calendar' value={date} min={weekBefore} max={today} onChange={(evt) => setDate(getCalendarDate(evt))} />
                         </div>
-                    </div>
 
-                    <img src={arrows} alt='arrows' id='arrows' style={{ width: '22px', height: '22px' }}></img>
-                    <div>
-                        <p className='calculation_text'>{calculation.converterText2}</p>
-                        <div className='calculation_exchange-pos calculation_exchange-pos--right'>
+                        <img src={arrows} alt='arrows' id='arrows' style={{ width: '22px', height: '22px' }}></img>
+                        <div>
+                            <p className='calculation_text'>{calculation.converterText2}</p>
+                            <div className='calculation_exchange-pos calculation_exchange-pos--right'>
 
-                            <div className='calculation_exchange-pos-row'>
-                                <input type="text" inputmode="numeric" pattern="\d*" id='amount-buy' onChange={() => { setSell(false); calculateSell(data) }} />
-                                <select id='currency-buy' onChange={() => calculateSell(data)}>
-                                    <option value="0">UAH</option>
-                                    <option value="1" selected>USD</option>
-                                    <option value="2">EUR</option>
-                                    <option value="3">GBP</option>
-                                    <option value="4">CNY</option>
-                                </select>
+                                <div className='calculation_exchange-pos-row'>
+                                    <input type="text" inputmode="numeric" pattern="\d*" id='amount-buy' onChange={() => { setSell(false); calculateSell(data) }} />
+                                    <select id='currency-buy' onChange={() => calculateSell(data)}>
+                                        <option value="0">UAH</option>
+                                        <option value="1" selected>USD</option>
+                                        <option value="2">EUR</option>
+                                        <option value="3">GBP</option>
+                                        <option value="4">CNY</option>
+                                    </select>
+                                </div>
+                                <a href='#' className='calculation_button' onClick={(evt) => saveResultToArray(evt)}>{calculation.saveResult}</a>
                             </div>
-                            <a href='#' className='calculation_button'>{calculation.saveResult}</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div >
+            <div className='history-container'>
+                <div className='history'>
+                    <div className='history-wrapper'>
+                        <p className='history_title'>{history.historyTitle}</p>
+                        <a href='#' className='history_clear' onClick={(evt) => clearHistoryItems(evt)}>{history.clearHistory}</a>
+                    </div>
+                    <div className='history_items'>
+                        {historyItems.map((item) => <History item={item} />)}
+                    </div>
+                </div>
+            </div>
+        </div>
     )
+    function saveResultToArray(evt) {
+        evt.preventDefault();
+        const historyItemsCopy = historyItems.slice();
+        const date = document.querySelector('#calendar').value;
+        const sellAmount = document.querySelector('#amount-sell').value;
+        const sellCurrency = document.querySelector('#currency-sell');
+        const sellCurrencySelected = sellCurrency[sellCurrency.selectedIndex].innerText
+        const buyAmount = document.querySelector('#amount-buy').value;
+        const buyCurrency = document.querySelector('#currency-buy');
+        const buyCurrencySelected = buyCurrency[buyCurrency.selectedIndex].innerText;
+        if (historyItemsCopy.length > 9) {
+            historyItemsCopy.shift();
+            console.log('array', historyItemsCopy);
+        }
+
+        historyItemsCopy.push({ date: date, sellAmount: sellAmount, sellCurrency: sellCurrencySelected, buyAmount: buyAmount, buyCurrency: buyCurrencySelected });
+        setHistoryItems(historyItemsCopy);
+    }
+
+    function clearHistoryItems(evt) {
+        evt.preventDefault();
+        const historyItemsCopy = [...historyItems];
+        historyItemsCopy.length = 0;
+        setHistoryItems(historyItemsCopy);
+    }
 }
 
 function calculateBuy(data) {
@@ -139,11 +178,6 @@ function getCalendarDate(evt) {
     return evt.target.value;
 }
 
-function calculatePlaceholderBuy(data) {
-    const uah = 1000;
-    const rateBuy = data.find(obj => obj.cc === 'USD').rate;
-    return `${parseFloat(uah / rateBuy).toFixed(2)}`;
-}
 
 async function fetchExchangeRates(date) {
     const dateFormat = getAPIDateFormat(date);
