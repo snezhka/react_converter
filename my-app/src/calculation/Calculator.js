@@ -11,6 +11,7 @@ const todayDate = new Date();
 const today = getUIDateFormat(todayDate);
 const weekBeforeDate = new Date(new Date().setDate(todayDate.getDate() - 7));
 const weekBefore = getUIDateFormat(weekBeforeDate);
+let currencies = [];
 
 export function Calculator() {
     const [date, setDate] = useState(today);
@@ -21,6 +22,7 @@ export function Calculator() {
         queryKey: ['currencies', date],
         queryFn: () => fetchExchangeRates(date)
     });
+
     if (isLoading) {
         console.log('Loading...');
     }
@@ -29,6 +31,8 @@ export function Calculator() {
     }
     if (isSuccess) {
         console.log('Data fetched successfully');
+        currencies = data.map((item) => item.cc);
+        console.log(currencies);
     }
 
     useEffect(() => {
@@ -50,11 +54,8 @@ export function Calculator() {
                                 <div className='calculation_exchange-pos-row'>
                                     <input type="text" inputmode="numeric" pattern="\d*" id='amount-sell' placeholder='0.00' onChange={() => { setSell(true); calculateBuy(data) }} />
                                     <select id='currency-sell' onChange={() => calculateBuy(data)}>
-                                        <option value="0" selected>UAH</option>
-                                        <option value="1">USD</option>
-                                        <option value="2">EUR</option>
-                                        <option value="3">GBP</option>
-                                        <option value="4">CNY</option>
+                                        <option value="UAH" selected>UAH</option>
+                                        {currencies.map((cur) => <option value={cur}>{cur}</option>)}
                                     </select>
                                 </div>
                                 <input type='date' id='calendar' value={date} min={weekBefore} max={today} onChange={(evt) => setDate(getCalendarDate(evt))} />
@@ -69,11 +70,8 @@ export function Calculator() {
                                 <div className='calculation_exchange-pos-row'>
                                     <input type="text" inputmode="numeric" pattern="\d*" id='amount-buy' onChange={() => { setSell(false); calculateSell(data) }} />
                                     <select id='currency-buy' onChange={() => calculateSell(data)}>
-                                        <option value="0">UAH</option>
-                                        <option value="1" selected>USD</option>
-                                        <option value="2">EUR</option>
-                                        <option value="3">GBP</option>
-                                        <option value="4">CNY</option>
+                                        <option value="UAH" selected>UAH</option>
+                                        {currencies.map((cur) => <option value={cur}>{cur}</option>)}
                                     </select>
                                 </div>
                                 <a href='#' className='calculation_button' onClick={(evt) => saveResultToArray(evt)}>{calculation.saveResult}</a>
